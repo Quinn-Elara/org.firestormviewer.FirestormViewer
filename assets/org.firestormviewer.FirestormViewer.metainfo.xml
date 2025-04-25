@@ -16,6 +16,7 @@
   <url type="homepage">https://www.firestormviewer.org/</url>
   <url type="bugtracker">https://github.com/flathub/org.firestormviewer.FirestormViewer</url>
   <releases>
+    <release version="7.1.13.77930" date="2025-04-25" />
     <release version="7.1.12.77211" date="2025-01-07" />
     <release version="7.1.11.76496" date="2024-10-22" />
     <release version="7.1.10.79513" date="2024-09-17" />
