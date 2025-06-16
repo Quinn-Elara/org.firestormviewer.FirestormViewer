@@ -137,9 +137,9 @@
                 {
                     "type":"extra-data",
                     "filename":"viewer.tar.xz",
-                    "url":"https://downloads.firestormviewer.org/release/linux/Phoenix-Firestorm-Releasex64_AVX2-7-1-11-76496.tar.xz",
-                    "sha256":"3c37b5bb7a9014de8da3ca7293384bc82c9d208b32214ca3974e587dcbf4cde7",
-                    "size": 186118968
+                    "url":"https://downloads.firestormviewer.org/release/linux/Phoenix-Firestorm-Releasex64_AVX2-7-1-13-78266.tar.xz",
+                    "sha256":"d71ddd89504753827fe1670670928bab2acc0c141a7af5f269ddb78a7613929b",
+                    "size": 186792964
                 },
                 {
                     "type":"script",
