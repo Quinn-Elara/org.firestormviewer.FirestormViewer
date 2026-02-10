@@ -116,7 +116,12 @@
                     "commands":[
                         "tar -xf viewer.tar.xz --strip 1 --no-same-owner",
                         "rm viewer.tar.xz",
-                        "cp /app/etc/launch_url.sh etc/"
+                        "cp /app/etc/launch_url.sh etc/",
+                        "if [ -f bin/SLPlugin ]; then",
+                        "mv bin/SLPlugin bin/SLPlugin.real",
+                        "cp /app/etc/SLPlugin-wrapper bin/SLPlugin",
+                        "chmod +x bin/SLPlugin",
+                        "fi"
                     ]
                 },
                 {
