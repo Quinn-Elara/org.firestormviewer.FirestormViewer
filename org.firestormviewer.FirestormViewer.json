@@ -26,7 +26,6 @@
         "--own-name=com.secondlife.ViewerAppAPIService",
         "--env=LD_LIBRARY_PATH=/app/extra/lib/:/app/lib",
         "--env=ZYPAK_CEF_LIBRARY_PATH=/app/extra/lib/libcef.so",
-        "--env=CHROME_WRAPPER=/app/bin/zypak-wrapper"
     ],
     "cleanup":[
         "/share/man",
