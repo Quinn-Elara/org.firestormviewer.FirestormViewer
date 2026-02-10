@@ -34,9 +34,9 @@ if [ -n "$1" ]; then
     gdbus call  -e -d com.secondlife.ViewerAppAPIService  -o /com/secondlife/ViewerAppAPI  -m com.secondlife.ViewerAppAPI.GoSLURL "$1"
   else
     prepareDiscord
-    exec /app/bin/zypak-wrapper $FIRESTORMBIN $PARAMS -url "$1"
+    $FIRESTORMBIN $PARAMS -url "$1"
   fi
 else
   prepareDiscord
-  exec /app/bin/zypak-wrapper $FIRESTORMBIN $PARAMS
+  $FIRESTORMBIN $PARAMS
 fi
