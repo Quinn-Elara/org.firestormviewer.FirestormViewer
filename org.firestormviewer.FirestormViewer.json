@@ -119,17 +119,17 @@
                     "dest-filename":"apply_extra",
                     "commands":[
                         "mkdir -p temp_working",
-                        "tar -xf ../viewer.tar.xz --strip 1 --no-same-owner",
-                        "tar -xf ../viewer_cef_working.tar.xz -C temp_working --strip 1 --no-same-owner",
+                        "tar -xf viewer.tar.xz --strip 1 --no-same-owner",
+                        "tar -xf viewer_cef_working.tar.xz -C temp_working --strip 1 --no-same-owner",
                         "cp -rv temp_working/bin/SLPlugin bin/",
                         "cp -rv temp_working/bin/dullahan_host bin/",
                         "cp -rv temp_working/bin/llplugin/ bin/",
                         "cp -rv temp_working/lib/libcef.so lib/",
                         "cp -rv temp_working/lib/libffmpegsumo.so lib/ 2>/dev/null || true",
-                        "mkdir -p etc",
-                        "cp -f /app/etc/launch_url.sh etc/ || true",
-                        "rm -rf temp_working",
-                        "chmod +x bin/SLPlugin bin/dullahan_host"
+                        "cp -rv temp_working/resources/ bin/ 2>/dev/null || true",
+                        "rm -rf temp_working viewer_new.tar.xz viewer_working.tar.xz",
+                        "chmod +x bin/SLPlugin bin/dullahan_host",
+                        "cp -f /app/etc/launch_url.sh etc/ || true"
                     ]
                 },
                 {
