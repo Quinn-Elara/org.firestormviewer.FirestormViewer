@@ -1,13 +1,13 @@
 {
-    "app-id":"org.firestormviewer.FirestormViewer",
+    "app-id": "org.firestormviewer.FirestormViewer",
     "base": "org.electronjs.Electron2.BaseApp",
     "base-version": "25.08",
-    "runtime":"org.freedesktop.Platform",
-    "runtime-version":"25.08",
-    "sdk":"org.freedesktop.Sdk",
-    "command":"firestorm-viewer",
-    "separate-locales":false,
-    "finish-args":[
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "25.08",
+    "sdk": "org.freedesktop.Sdk",
+    "command": "firestorm-viewer",
+    "separate-locales": false,
+    "finish-args": [
         "--share=ipc",
         "--socket=x11",
         "--socket=pulseaudio",
@@ -25,135 +25,119 @@
         "--talk-name=org.freedesktop.secrets",
         "--own-name=com.secondlife.ViewerAppAPIService",
         "--env=LD_LIBRARY_PATH=/app/extra/lib:/app/extra/bin/llplugin:/app/lib",
-        "--env=ZYPAK_DEBUG=1",
+        "--env=ZYPAK_SPAWN_STRATEGY=bus",
         "--env=ZYPAK_CEF_LIBRARY_PATH=/app/extra/lib/libcef.so",
         "--env=DULLAHAN_NO_SANDBOX=1",
         "--env=SL_NO_CEF_SANDBOX=1"
     ],
-    "cleanup":[
+    "cleanup": [
         "/share/man",
         "/share/doc",
         "/share/gtk-doc",
         "/lib/pkgconfig"
     ],
-    "build-options":{
-        "strip":true
+    "build-options": {
+        "strip": true
     },
-    "modules":[
+    "modules": [
         "shared-modules/glu/glu-9.json",
         "shared-modules/gtk2/gtk2.json",
         "shared-modules/dbus-glib/dbus-glib.json",
         {
-            "name":"libnotify",
-            "buildsystem":"meson",
-            "config-opts":[
+            "name": "libnotify",
+            "buildsystem": "meson",
+            "config-opts": [
                 "-Ddocbook_docs=disabled",
                 "-Dintrospection=disabled",
                 "-Dtests=false",
                 "-Dgtk_doc=false",
                 "-Dman=false"
             ],
-            "cleanup":[
+            "cleanup": [
                 "/bin"
             ],
-            "sources":[
+            "sources": [
                 {
-                    "type":"archive",
-                    "url":"https://download.gnome.org/sources/libnotify/0.8/libnotify-0.8.6.tar.xz",
-                    "sha256":"c5540aaefb60e1d63b1c587c05f2284ebe72ece7d0c0e5e4a778cfd5844b6b58"
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/libnotify/0.8/libnotify-0.8.6.tar.xz",
+                    "sha256": "c5540aaefb60e1d63b1c587c05f2284ebe72ece7d0c0e5e4a778cfd5844b6b58"
                 }
             ]
         },
         {
-            "name":"libgnome-keyring",
-            "config-opts":[
+            "name": "libgnome-keyring",
+            "config-opts": [
                 "--disable-static",
                 "--disable-gtk-doc",
                 "--disable-coverage",
                 "--disable-introspection"
             ],
-            "sources":[
+            "sources": [
                 {
-                    "type":"archive",
-                    "url":"https://download.gnome.org/sources/libgnome-keyring/3.12/libgnome-keyring-3.12.0.tar.xz",
-                    "sha256":"c4c178fbb05f72acc484d22ddb0568f7532c409b0a13e06513ff54b91e947783"
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/libgnome-keyring/3.12/libgnome-keyring-3.12.0.tar.xz",
+                    "sha256": "c4c178fbb05f72acc484d22ddb0568f7532c409b0a13e06513ff54b91e947783"
                 },
                 {
-                    "type":"shell",
-                    "commands":[
+                    "type": "shell",
+                    "commands": [
                         "GTKDOCIZE=echo autoreconf -fi"
                     ]
                 }
             ]
         },
-        //{
-        //    "name":"ubuntu-libcypto",
-        //    "buildsystem":"simple",
-        //    "sources":[
-        //        {
-        //            "type":"file",
-        //            "url":"http://mirrors.edge.kernel.org/ubuntu/pool/main/libx/libxcrypt/libcrypt1_4.4.27-1_amd64.deb",
-        //            "sha256":"3fa566e9f861a08736cbc5a97562d9d6e4f0c00450fbeafcb6d7583423b04a98"
-        //        }
-        //    ],
-        //    "build-commands":[
-        //          "ar x libcrypt1_4.4.27-1_amd64.deb",
-        //          "tar -xvf data.tar.zst",
-        //           "cp lib/x86_64-linux-gnu/* /app/lib/"
-        //    ]
-        //},
         {
-            "name":"firestorm",
-            "buildsystem":"simple",
-            "sources":[
+            "name": "firestorm",
+            "buildsystem": "simple",
+            "sources": [
                 {
-                    "type":"extra-data",
-                    "filename":"viewer.tar.xz",
-                    "url":"https://downloads.firestormviewer.org/preview/linux/Phoenix-Firestorm-Betax64_AVX2-7-2-3-80035.tar.xz",
-                    "sha256":"86c6accf09ac1202e4b9d44acc3956e5632b5206b7a4bd8e41ad610ad6d3b86b",
+                    "type": "extra-data",
+                    "filename": "viewer.tar.xz",
+                    "url": "https://downloads.firestormviewer.org/preview/linux/Phoenix-Firestorm-Betax64_AVX2-7-2-3-80035.tar.xz",
+                    "sha256": "86c6accf09ac1202e4b9d44acc3956e5632b5206b7a4bd8e41ad610ad6d3b86b",
                     "size": 186383940
                 },
                 {
-                    "type":"script",
-                    "dest-filename":"apply_extra",
+                    "type": "script",
+                    "dest-filename": "apply_extra",
                     "commands": [
                         "tar -xf viewer.tar.xz --strip 1 --no-same-owner",
                         "rm -f viewer.tar.xz",
-                        "REAL_HOST=$(find . -name dullahan_host | head -n 1)",
-                        "mv $REAL_HOST bin/dullahan_host.bin",
-                        "echo '#!/usr/bin/bash' > bin/dullahan_host",
-                        "echo 'export ZYPAK_BIN_PATH=/app/bin' >> bin/dullahan_host",
-                        "echo 'export ZYPAK_CEF_LIBRARY_PATH=/app/extra/lib/libcef.so' >> bin/dullahan_host",
-                        "echo 'exec /app/bin/zypak-helper child /app/extra/bin/dullahan_host.bin \"$@\" --no-sandbox' >> bin/dullahan_host",
-                        "chmod +x bin/dullahan_host.bin",
+                        "mv bin/SLPlugin bin/SLPlugin.bin",
+                        "echo '#!/usr/bin/bash' > bin/SLPlugin",
+                        "echo 'export ZYPAK_BIN_PATH=/app/bin' >> bin/SLPlugin",
+                        "echo 'export ZYPAK_CEF_LIBRARY_PATH=/app/extra/lib/libcef.so' >> bin/SLPlugin",
+                        "echo 'exec /app/bin/zypak-wrapper /app/extra/bin/SLPlugin.bin \"$@\"' >> bin/SLPlugin",
+                        "chmod +x bin/SLPlugin",
+                        "chmod +x bin/SLPlugin.bin",
+                        "find . -name dullahan_host.bin -exec mv {} bin/dullahan_host \\; || true",
+                        "find . -name dullahan_host.orig -exec mv {} bin/dullahan_host \\; || true",
                         "chmod +x bin/dullahan_host",
                         "cp -f /app/etc/launch_url.sh etc/ || true"
                     ]
                 },
                 {
-                    "type":"file",
-                    "path":"assets/firestorm-viewer"
+                    "type": "file",
+                    "path": "assets/firestorm-viewer"
                 },
                 {
-                    "type":"file",
-                    "path":"assets/launch_url.sh"
+                    "type": "file",
+                    "path": "assets/launch_url.sh"
                 },
                 {
-                    "type":"file",
-                    "path":"assets/org.firestormviewer.FirestormViewer.desktop"
+                    "type": "file",
+                    "path": "assets/org.firestormviewer.FirestormViewer.desktop"
                 },
                 {
-                    "type":"file",
-                    "path":"assets/org.firestormviewer.FirestormViewer.metainfo.xml"
+                    "type": "file",
+                    "path": "assets/org.firestormviewer.FirestormViewer.metainfo.xml"
                 },
                 {
-                    "type":"file",
-                    "url":"https://raw.githubusercontent.com/FirestormViewer/phoenix-firestorm/master/indra/newview/skins/default/textures/firestorm_icon.png",
-                    "sha256":"a2e3ec61c05b675e2a256be463342ea2b18feefaf4434879d03ddd055f213b1b",
-                    "dest-filename":"org.firestormviewer.FirestormViewer.png"
+                    "type": "file",
+                    "path": "assets/org.firestormviewer.FirestormViewer.png"
                 }
             ],
-            "build-commands":[
+            "build-commands": [
                 "install apply_extra /app/bin/",
                 "install launch_url.sh /app/etc/",
                 "install -Dm755 firestorm-viewer $FLATPAK_DEST/bin/",
@@ -164,4 +148,3 @@
         }
     ]
 }
-
