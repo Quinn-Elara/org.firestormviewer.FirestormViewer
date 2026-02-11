@@ -103,9 +103,12 @@
                     "commands":[
                         "tar -xf viewer.tar.xz --strip 1 --no-same-owner",
                         "rm -f viewer.tar.xz",
-                        "mv bin/SLPlugin bin/SLPlugin.bin",
-                        "printf '#!/bin/bash\\nexport ZYPAK_BIN_PATH=/app/bin\\nexport ZYPAK_SPAWN_STRATEGY=bus\\nexport ZYPAK_CEF_LIBRARY_PATH=/app/extra/lib/libcef.so\\nexec /app/bin/zypak-wrapper /app/extra/bin/SLPlugin.bin \"$@\"' > bin/SLPlugin",
-                        "chmod +x bin/SLPlugin bin/SLPlugin.bin",
+                        "printf '#!/bin/bash\\nexport ZYPAK_BIN_PATH=/app/bin\\nexport ZYPAK_SPAWN_STRATEGY=bus\\nexport ZYPAK_CEF_LIBRARY_PATH=/app/extra/lib/libcef.so\\nexec /app/bin/zypak-wrapper /app/extra/bin/SLPlugin.real \"$@\"' > /app/bin/slplugin-zypak-wrapper",
+                        "chmod +x /app/bin/slplugin-zypak-wrapper",
+                        "FIRST_SLP=$(find . -name SLPlugin | head -n 1)",
+                        "cp $FIRST_SLP bin/SLPlugin.real",
+                        "find . -name SLPlugin -exec ln -sf /app/bin/slplugin-zypak-wrapper {} \\;",
+                        "chmod +x bin/SLPlugin.real",
                         "test -f bin/dullahan_host && chmod +x bin/dullahan_host",
                         "cp -f /app/etc/launch_url.sh etc/ || true"
                     ]
