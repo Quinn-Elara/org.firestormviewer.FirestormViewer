@@ -25,7 +25,9 @@
         "--talk-name=org.freedesktop.secrets",
         "--own-name=com.secondlife.ViewerAppAPIService",
         "--env=LD_LIBRARY_PATH=/app/extra/lib/:/app/lib",
-        "--env=ZYPAK_SPAWN_STRATEGY=spawn"
+        "--env=ZYPAK_DEBUG=1",
+        "--env=DULLAHAN_NO_SANDBOX=1",
+        "--env=SL_NO_CEF_SANDBOX=1"
     ],
     "cleanup":[
         "/share/man",
@@ -151,6 +153,19 @@
                 "install -Dm644 $FLATPAK_ID.metainfo.xml $FLATPAK_DEST/share/metainfo/$FLATPAK_ID.metainfo.xml"
             ]
         }
+        {
+            "name": "cef-fixes",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir -p /app/bin",
+                "mv /app/extra/bin/dullahan_host /app/extra/bin/dullahan_host.bin",
+                "echo '#!/bin/bash' > /app/extra/bin/dullahan_host",
+                "echo 'export ZYPAK_BIN_PATH=/app/bin' >> /app/extra/bin/dullahan_host",
+                "echo 'export ZYPAK_CEF_LIBRARY_PATH=/app/extra/lib/libcef.so' >> /app/extra/bin/dullahan_host",
+                "echo 'exec zypak-helper child /app/extra/bin/dullahan_host.bin \"$@\" --no-sandbox' >> /app/extra/bin/dullahan_host",
+                "chmod +x /app/extra/bin/dullahan_host"
+    ]
+}
     ]
 }
 
