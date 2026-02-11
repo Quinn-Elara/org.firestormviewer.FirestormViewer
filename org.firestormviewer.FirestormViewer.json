@@ -104,7 +104,7 @@
                         "tar -xf viewer.tar.xz --strip 1 --no-same-owner",
                         "rm -f viewer.tar.xz",
                         "mv bin/SLPlugin bin/SLPlugin.bin",
-                        "printf '#!/usr/bin/bash\\nexport ZYPAK_BIN_PATH=/app/bin\\nexport ZYPAK_SPAWN_STRATEGY=bus\\nexport ZYPAK_CEF_LIBRARY_PATH=/app/extra/lib/libcef.so\\nexec /app/bin/zypak-wrapper /app/extra/bin/SLPlugin.bin -- \"$@\"\\n' > bin/SLPlugin",
+                        "printf '#!/usr/bin/bash\\nexport ZYPAK_BIN_PATH=/app/bin\\nexport ZYPAK_SPAWN_STRATEGY=bus\\nexport ZYPAK_CEF_LIBRARY_PATH=/app/extra/lib/libcef.so\\nexec /app/bin/zypak-wrapper /app/extra/bin/SLPlugin.bin \"$@\"\\n' > bin/SLPlugin",
                         "chmod +x bin/SLPlugin bin/SLPlugin.bin",
                         "mkdir -p bin/llplugin",
                         "cp -fp bin/SLPlugin bin/llplugin/SLPlugin",
