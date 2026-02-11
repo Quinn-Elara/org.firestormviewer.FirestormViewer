@@ -118,16 +118,17 @@
                     "dest-filename":"apply_extra",
                     "commands": [
                         "tar -xf viewer.tar.xz --strip 1 --no-same-owner",
-                        "rm viewer.tar.xz",
-                        "cp /app/etc/launch_url.sh etc/",
+                        "rm -f viewer.tar.xz",
                         "mkdir -p llplugin",
-                        "cp -p dullahan_host llplugin/dullahan_host.bin",
+                        "REAL_HOST=$(find . -name dullahan_host | head -n 1)",
+                        "cp -pf $REAL_HOST llplugin/dullahan_host.bin",
                         "echo '#!/bin/bash' > llplugin/dullahan_host",
                         "echo 'export ZYPAK_BIN_PATH=/app/bin' >> llplugin/dullahan_host",
                         "echo 'export ZYPAK_CEF_LIBRARY_PATH=/app/extra/lib/libcef.so' >> llplugin/dullahan_host",
                         "echo 'exec zypak-helper child /app/extra/bin/llplugin/dullahan_host.bin \"$@\" --no-sandbox' >> llplugin/dullahan_host",
                         "chmod +x llplugin/dullahan_host",
-                        "rm dullahan_host"
+                        "rm -f $REAL_HOST",
+                        "cp -f /app/etc/launch_url.sh etc/ || true"
                     ]
                 },
                 {
