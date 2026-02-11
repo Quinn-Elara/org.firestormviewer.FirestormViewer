@@ -113,7 +113,7 @@
                         "chmod +x bin/llplugin/SLPlugin",
                         "chmod +x bin/llplugin/SLPlugin.bin",
                         "REAL_HOST=$(find . -name dullahan_host | head -n 1)",
-                        "mv $REAL_HOST bin/dullahan_host",
+                        "test \"$REAL_HOST\" != \"./bin/dullahan_host\" && mv $REAL_HOST bin/dullahan_host || true",
                         "chmod +x bin/dullahan_host",
                         "cp -f /app/etc/launch_url.sh etc/ || true"
                     ]
