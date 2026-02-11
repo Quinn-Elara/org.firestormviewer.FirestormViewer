@@ -134,6 +134,10 @@
                 },
                 {
                     "type":"file",
+                    "path":"assets/SLPlugin-wrapper"
+                },
+                {
+                    "type":"file",
                     "path":"assets/org.firestormviewer.FirestormViewer.desktop"
                 },
                 {
