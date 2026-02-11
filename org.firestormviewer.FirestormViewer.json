@@ -125,7 +125,7 @@
                         "echo '#!/usr/bin/bash' > bin/dullahan_host",
                         "echo 'export ZYPAK_BIN_PATH=/app/bin' >> bin/dullahan_host",
                         "echo 'export ZYPAK_CEF_LIBRARY_PATH=/app/extra/lib/libcef.so' >> bin/dullahan_host",
-                        "echo 'exec zypak-helper child /app/extra/bin/.browser_bin/dullahan_host.real \"$@\" --no-sandbox' >> bin/dullahan_host",
+                        "echo 'exec zypak-wrapper /app/extra/bin/.browser_bin/dullahan_host.real \"$@\" --no-sandbox' >> bin/dullahan_host",
                         "chmod +x bin/dullahan_host",
                         "chmod +x .browser_bin/dullahan_host.real",
                         "rm -f dullahan_host",
