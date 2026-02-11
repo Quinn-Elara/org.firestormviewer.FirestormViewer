@@ -116,16 +116,18 @@
                 {
                     "type":"script",
                     "dest-filename":"apply_extra",
-                    "commands":[
+                    "commands": [
                         "tar -xf viewer.tar.xz --strip 1 --no-same-owner",
                         "rm viewer.tar.xz",
                         "cp /app/etc/launch_url.sh etc/",
-                        "cp -p dullahan_host dullahan_host.bin",
+                        "cd llplugin",
+                        "cp -p ../dullahan_host ./dullahan_host.bin",
                         "echo '#!/bin/bash' > dullahan_host",
                         "echo 'export ZYPAK_BIN_PATH=/app/bin' >> dullahan_host",
                         "echo 'export ZYPAK_CEF_LIBRARY_PATH=/app/extra/lib/libcef.so' >> dullahan_host",
-                        "echo 'exec zypak-helper child /app/extra/bin/dullahan_host.bin \"$@\" --no-sandbox' >> dullahan_host",
-                        "chmod +x dullahan_host"
+                        "echo 'exec zypak-helper child /app/extra/bin/llplugin/dullahan_host.bin \"$@\" --no-sandbox' >> dullahan_host",
+                        "chmod +x dullahan_host",
+                        "rm ../dullahan_host"
                     ]
                 },
                 {
