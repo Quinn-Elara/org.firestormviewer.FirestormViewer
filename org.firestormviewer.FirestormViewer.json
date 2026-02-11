@@ -21,6 +21,7 @@
         "--filesystem=xdg-run/app/com.discordapp.Discord:create",
         "--talk-name=org.freedesktop.Notifications",
         "--talk-name=org.freedesktop.secrets",
+        "--system-talk-name=org.freedesktop.DBus",
         "--own-name=com.secondlife.ViewerAppAPIService",
         "--env=LD_LIBRARY_PATH=/app/extra/lib/:/app/lib",
         "--env=ZYPAK_CEF_LIBRARY_PATH=/app/extra/lib/libcef.so"
