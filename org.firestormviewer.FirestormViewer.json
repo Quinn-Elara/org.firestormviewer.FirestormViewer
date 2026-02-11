@@ -108,12 +108,28 @@
                     "size": 186383940
                 },
                 {
+                    "type":"extra-data",
+                    "filename":"viewer_cef_working.tar.xz",
+                    "url":"https://downloads.firestormviewer.org/release/linux/Phoenix-Firestorm-Releasex64_AVX2-7-2-2-79439.tar.xz",
+                    "sha256":"5312edfd05c10a0f03ca0b4ff3f64fac164f978d4fed25c3f9ffe4496764a70b",
+                    "size": 185208608
+                },
+                {
                     "type":"script",
                     "dest-filename":"apply_extra",
                     "commands":[
-                        "tar -xf viewer.tar.xz --strip 1 --no-same-owner",
-                        "rm viewer.tar.xz",
-                        "cp /app/etc/launch_url.sh etc/"
+                        "mkdir -p temp_working",
+                        "tar -xf viewer_new.tar.xz --strip 1 --no-same-owner",
+                        "tar -xf viewer_working.tar.xz -C temp_working --strip 1 --no-same-owner",
+                        "cp -rv temp_working/bin/SLPlugin bin/",
+                        "cp -rv temp_working/bin/dullahan_host bin/",
+                        "cp -rv temp_working/bin/llplugin/ bin/",
+                        "cp -rv temp_working/lib/libcef.so lib/",
+                        "cp -rv temp_working/lib/libffmpegsumo.so lib/ 2>/dev/null || true",
+                        "cp -rv temp_working/resources/ bin/ 2>/dev/null || true",
+                        "rm -rf temp_working viewer_new.tar.xz viewer_working.tar.xz",
+                        "chmod +x bin/SLPlugin bin/dullahan_host",
+                        "cp -f /app/etc/launch_url.sh etc/ || true"
                     ]
                 },
                 {
