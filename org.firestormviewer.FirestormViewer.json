@@ -1,5 +1,7 @@
 {
     "app-id":"org.firestormviewer.FirestormViewer",
+    "base": "org.electronjs.Electron2.BaseApp",
+    "base-version": "25.08",
     "runtime":"org.freedesktop.Platform",
     "runtime-version":"25.08",
     "sdk":"org.freedesktop.Sdk",
@@ -11,7 +13,7 @@
         "--socket=pulseaudio",
         "--share=network",
         "--allow=multiarch",
-        "--device=dri",
+        "--device=all",
         "--filesystem=~/.firestorm_x64:create",
         "--filesystem=xdg-desktop",
         "--filesystem=xdg-documents",
@@ -22,7 +24,8 @@
         "--talk-name=org.freedesktop.Notifications",
         "--talk-name=org.freedesktop.secrets",
         "--own-name=com.secondlife.ViewerAppAPIService",
-        "--env=LD_LIBRARY_PATH=/app/extra/lib/:/app/lib"
+        "--env=LD_LIBRARY_PATH=/app/extra/lib/:/app/lib",
+        "--env=ZYPAK_SPAWN_STRATEGY=spawn"
     ],
     "cleanup":[
         "/share/man",
