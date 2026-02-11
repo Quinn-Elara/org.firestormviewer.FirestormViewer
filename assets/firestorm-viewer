@@ -27,6 +27,15 @@ export TMPDIR=$XDG_CACHE_HOME/tmp
 ## Enable nVidia threaded optimizations, this seems to be a free performance gain - see https://github.com/FirestormViewer/phoenix-firestorm/commit/ccaab5c0b8a4c506df566a195bc19567404b3589
 export __GL_THREADED_OPTIMIZATIONS=1
 
+# Tell Zypak where to find the CEF library and the host binary
+export ZYPAK_CEF_LIBRARY_PATH="/app/extra/lib/libcef.so"
+export ZYPAK_BIN_PATH="/app/bin"
+
+# These environment variables tell Dullahan to skip its own sandbox 
+# (which is redundant and causes crashes inside Flatpak's sandbox)
+export DULLAHAN_NO_SANDBOX=1
+export SL_NO_CEF_SANDBOX=1
+
 cd $APPPATH
 
 if [ -n "$1" ]; then
@@ -34,9 +43,9 @@ if [ -n "$1" ]; then
     gdbus call  -e -d com.secondlife.ViewerAppAPIService  -o /com/secondlife/ViewerAppAPI  -m com.secondlife.ViewerAppAPI.GoSLURL "$1"
   else
     prepareDiscord
-    $FIRESTORMBIN $PARAMS -url "$1"
+    exec zypak-wrapper $FIRESTORMBIN $PARAMS -url "$1"
   fi
 else
   prepareDiscord
-  $FIRESTORMBIN $PARAMS
+  exec zypak-wrapper $FIRESTORMBIN $PARAMS
 fi
