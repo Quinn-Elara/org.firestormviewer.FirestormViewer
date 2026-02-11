@@ -24,8 +24,9 @@
         "--talk-name=org.freedesktop.Notifications",
         "--talk-name=org.freedesktop.secrets",
         "--own-name=com.secondlife.ViewerAppAPIService",
-        "--env=LD_LIBRARY_PATH=/app/extra/lib/:/app/lib",
+        "--env=LD_LIBRARY_PATH=/app/extra/lib:/app/extra/bin/llplugin:/app/lib",
         "--env=ZYPAK_DEBUG=1",
+        "--env=ZYPAK_CEF_LIBRARY_PATH=/app/extra/lib/libcef.so",
         "--env=DULLAHAN_NO_SANDBOX=1",
         "--env=SL_NO_CEF_SANDBOX=1"
     ],
