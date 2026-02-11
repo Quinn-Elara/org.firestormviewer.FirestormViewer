@@ -98,20 +98,22 @@
                     "size": 186383940
                 },
                 {
-                    "type": "script",
-                    "dest-filename": "apply_extra",
-                    "commands": [
+                    "type":"script",
+                    "dest-filename":"apply_extra",
+                    "commands":[
                         "tar -xf viewer.tar.xz --strip 1 --no-same-owner",
                         "rm -f viewer.tar.xz",
-                        "mv bin/SLPlugin bin/SLPlugin.bin",
-                        "echo '#!/usr/bin/bash' > bin/SLPlugin",
-                        "echo 'export ZYPAK_BIN_PATH=/app/bin' >> bin/SLPlugin",
-                        "echo 'export ZYPAK_CEF_LIBRARY_PATH=/app/extra/lib/libcef.so' >> bin/SLPlugin",
-                        "echo 'exec /app/bin/zypak-wrapper /app/extra/bin/SLPlugin.bin \"$@\"' >> bin/SLPlugin",
-                        "chmod +x bin/SLPlugin",
-                        "chmod +x bin/SLPlugin.bin",
-                        "find . -name dullahan_host.bin -exec mv {} bin/dullahan_host \\; || true",
-                        "find . -name dullahan_host.orig -exec mv {} bin/dullahan_host \\; || true",
+                        "mkdir -p bin/llplugin",
+                        "REAL_SLP=$(find . -name SLPlugin | head -n 1)",
+                        "mv $REAL_SLP bin/llplugin/SLPlugin.bin",
+                        "echo '#!/usr/bin/bash' > bin/llplugin/SLPlugin",
+                        "echo 'export ZYPAK_BIN_PATH=/app/bin' >> bin/llplugin/SLPlugin",
+                        "echo 'export ZYPAK_CEF_LIBRARY_PATH=/app/extra/lib/libcef.so' >> bin/llplugin/SLPlugin",
+                        "echo 'exec /app/bin/zypak-wrapper /app/extra/bin/llplugin/SLPlugin.bin \"$@\"' >> bin/llplugin/SLPlugin",
+                        "chmod +x bin/llplugin/SLPlugin",
+                        "chmod +x bin/llplugin/SLPlugin.bin",
+                        "REAL_HOST=$(find . -name dullahan_host | head -n 1)",
+                        "mv $REAL_HOST bin/dullahan_host",
                         "chmod +x bin/dullahan_host",
                         "cp -f /app/etc/launch_url.sh etc/ || true"
                     ]
