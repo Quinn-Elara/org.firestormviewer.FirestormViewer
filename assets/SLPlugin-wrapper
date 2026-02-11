@@ -1,15 +1,29 @@
 #!/bin/bash
 # Wrapper for SLPlugin to properly handle CEF in Flatpak
+# SLPlugin is called with arguments like: SLPlugin <port_number>
 
 # Ensure library path is set
 export LD_LIBRARY_PATH=/app/extra/lib:/app/lib:${LD_LIBRARY_PATH}
 
-# CEF needs to find its resources
-export CHROME_WRAPPER=/app/bin/zypak-wrapper
+# Set the plugin directory path (SLPlugin looks for plugins here)
+export LL_PLUGIN_DIR=/app/extra/bin/llplugin
 
-# Disable CEF's sandbox since Flatpak provides it
-# Even though you said this didn't work standalone, it might work with Zypak
-export ZYPAK_DISABLE_SANDBOX=1
+# CRITICAL: CEF needs to re-execute for different process types
+# Point it back to this wrapper so all subprocesses go through Zypak
+export CEF_SUBPROCESS_PATH=/app/extra/bin/SLPlugin
 
-# Run the actual SLPlugin binary with zypak
+# CEF resource paths - point to the resources directory we created
+export CEF_RESOURCES_PATH=/app/extra/resources
+export CEF_LOCALES_PATH=/app/extra/resources/locales
+
+# Enable verbose CEF and Zypak logging
+export CEF_LOG_SEVERITY=verbose
+export CEF_LOG_FILE=$XDG_CACHE_HOME/cef_debug.log
+
+# Change to the app directory so relative paths work
+cd /app/extra
+
+# Wrap SLPlugin.real with Zypak so CEF subprocesses work correctly
+# When CEF re-executes CEF_SUBPROCESS_PATH, it will call this wrapper again,
+# which will call zypak-wrapper again, creating properly sandboxed subprocesses
 exec /app/bin/zypak-wrapper /app/extra/bin/SLPlugin.real "$@"
