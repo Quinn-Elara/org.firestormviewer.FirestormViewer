@@ -152,7 +152,7 @@
                 "install -Dm644 $FLATPAK_ID.png $FLATPAK_DEST/share/icons/hicolor/128x128/apps/$FLATPAK_ID.png",
                 "install -Dm644 $FLATPAK_ID.metainfo.xml $FLATPAK_DEST/share/metainfo/$FLATPAK_ID.metainfo.xml"
             ]
-        }
+        },
         {
             "name": "cef-fixes",
             "buildsystem": "simple",
