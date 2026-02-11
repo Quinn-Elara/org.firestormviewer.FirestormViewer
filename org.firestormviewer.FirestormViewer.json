@@ -154,6 +154,7 @@
             "build-commands":[
                 "install apply_extra /app/bin/",
                 "install launch_url.sh /app/etc/",
+                "install SLPlugin-wrapper /app/etc/",
                 "install -Dm755 firestorm-viewer $FLATPAK_DEST/bin/",
                 "install -Dm644 $FLATPAK_ID.desktop $FLATPAK_DEST/share/applications/$FLATPAK_ID.desktop",
                 "install -Dm644 $FLATPAK_ID.png $FLATPAK_DEST/share/icons/hicolor/128x128/apps/$FLATPAK_ID.png",
