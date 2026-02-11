@@ -118,7 +118,13 @@
                     "commands":[
                         "tar -xf viewer.tar.xz --strip 1 --no-same-owner",
                         "rm viewer.tar.xz",
-                        "cp /app/etc/launch_url.sh etc/"
+                        "cp /app/etc/launch_url.sh etc/",
+                        "cp -p dullahan_host dullahan_host.bin",
+                        "echo '#!/bin/bash' > dullahan_host",
+                        "echo 'export ZYPAK_BIN_PATH=/app/bin' >> dullahan_host",
+                        "echo 'export ZYPAK_CEF_LIBRARY_PATH=/app/extra/lib/libcef.so' >> dullahan_host",
+                        "echo 'exec zypak-helper child /app/extra/bin/dullahan_host.bin \"$@\" --no-sandbox' >> dullahan_host",
+                        "chmod +x dullahan_host"
                     ]
                 },
                 {
@@ -152,20 +158,7 @@
                 "install -Dm644 $FLATPAK_ID.png $FLATPAK_DEST/share/icons/hicolor/128x128/apps/$FLATPAK_ID.png",
                 "install -Dm644 $FLATPAK_ID.metainfo.xml $FLATPAK_DEST/share/metainfo/$FLATPAK_ID.metainfo.xml"
             ]
-        },
-        {
-            "name": "cef-fixes",
-            "buildsystem": "simple",
-            "build-commands": [
-                "mkdir -p /app/bin",
-                "mv /app/extra/bin/dullahan_host /app/extra/bin/dullahan_host.bin",
-                "echo '#!/bin/bash' > /app/extra/bin/dullahan_host",
-                "echo 'export ZYPAK_BIN_PATH=/app/bin' >> /app/extra/bin/dullahan_host",
-                "echo 'export ZYPAK_CEF_LIBRARY_PATH=/app/extra/lib/libcef.so' >> /app/extra/bin/dullahan_host",
-                "echo 'exec zypak-helper child /app/extra/bin/dullahan_host.bin \"$@\" --no-sandbox' >> /app/extra/bin/dullahan_host",
-                "chmod +x /app/extra/bin/dullahan_host"
-    ]
-}
+        }
     ]
 }
 
